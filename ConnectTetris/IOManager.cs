@@ -1,5 +1,6 @@
 ﻿///<summary>
-///Class of static methods to take input and display output
+/// Written by: Charley Bein, Ben Tipton
+/// File Summary: Class of static methods to take input and display output
 /// (General info in Program.cs)
 /// </summary>
 using System;
@@ -12,7 +13,7 @@ namespace ConnectTetris
         public static void Draw(int[,] grid)
         {
             Console.Clear();
-            for(int i = 1; i <= GameManager.width; i++)
+            for (int i = 1; i <= GameManager.width; i++)
             {
                 Console.Write("| {0} ", i);
             }
@@ -34,6 +35,10 @@ namespace ConnectTetris
             int player = turnNo % 2 + 1;
             Console.Write("Player {0}, make your move ", player);
             string playString = Console.ReadLine();
+            if(String.Equals(playString, "save", StringComparison.CurrentCultureIgnoreCase))
+            {
+                return -1;
+            }
             int play = Int32.Parse(playString);
             return game.AddToken(play, player);
         }
