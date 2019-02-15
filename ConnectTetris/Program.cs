@@ -39,6 +39,10 @@ namespace ConnectTetris
                         for(int j = 0; j < GameManager.width + 2; j++)
                         {
                             row.Value[j].SetColor(saved.gameBoard[i, j]);
+                            if (row.Value[j].GetColor() > 0)
+                            {
+                                row.Value[j].SetPos(row, j);
+                            }
                         }
                         row = row.Next;
                     }
