@@ -1,5 +1,6 @@
 ﻿///<summary>
-///Manager for all primary game logic
+/// Written by: Charley Bein, Ben Tipton
+/// File Summary: Manager for all primary game logic
 /// (General info in Program.cs)
 /// </summary>
 
@@ -13,7 +14,7 @@ namespace ConnectTetris
         public static int height = 6;
         public static int width = 7;
         public int winstate = 0;
-        public LinkedList<Token[]> rowlist = new LinkedList<Token[]>(); 
+        public LinkedList<Token[]> rowlist = new LinkedList<Token[]>();
 
         // When manager is initialized, create an empty game board with edges of color -1
         public GameManager()
@@ -63,9 +64,9 @@ namespace ConnectTetris
             }
 
             // If there is no winner, check if the bottom row is filled, and if so, delete it
-            if (checkFilled())
+            if (CheckFilled())
             {
-                deleteRow();
+                DeleteRow();
             }
 
             // Return a neutral game state
@@ -111,7 +112,7 @@ namespace ConnectTetris
 
 
         // Check each token in the first row to see if it is filled, and return that answer
-        private bool checkFilled()
+        private bool CheckFilled()
         {
             bool filled = true;
             foreach(Token token in rowlist.First.Next.Value)
@@ -122,7 +123,7 @@ namespace ConnectTetris
         }
 
         // Delete the bottom game row, and add a new one to the top to keep the size consistent
-        private void deleteRow()
+        private void DeleteRow()
         {
             LinkedListNode<Token[]> firstRow = rowlist.First.Next;
             Token[] inArr = { new Token(-1), new Token(), new Token(), new Token(), new Token(), new Token(), new Token(), new Token(), new Token(-1) };

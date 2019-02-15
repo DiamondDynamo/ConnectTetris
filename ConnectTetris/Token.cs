@@ -1,9 +1,12 @@
 ﻿///<summary>
-///Class to be instantiated into the array, hold the token's color, and check for a win state
+/// Written by: Charley Bein, Ben Tipton
+/// File Summary: Class to be instantiated into the array, hold the token's color, and check for a win state
 /// (General info in Program.cs)
 /// </summary>
 
+using System;
 using System.Collections.Generic;
+
 
 namespace ConnectTetris
 {
@@ -50,7 +53,7 @@ namespace ConnectTetris
             {
                 if (neighbors[x, y] != 0)
                 {
-                    neighbors[x, y] += CheckLine(j);
+                    neighbors[x, y] = CheckLine(j);
                 }
                 j++;
                 if (y < 2)
@@ -97,10 +100,10 @@ namespace ConnectTetris
         // Add up the counts on opposite sides of the token, and return whether any of them are over 4, meaning a win state
         public bool CheckTot()
         {
-            int v = neighbors[0, 1] + neighbors[2, 1];
-            int h = neighbors[1, 0] + neighbors[1, 2];
-            int d1 = neighbors[0, 0] + neighbors[2, 2];
-            int d2 = neighbors[2, 0] + neighbors[0, 2];
+            int v = neighbors[0, 1] + neighbors[2, 1] + 1;
+            int h = neighbors[1, 0] + neighbors[1, 2] + 1;
+            int d1 = neighbors[0, 0] + neighbors[2, 2] + 1;
+            int d2 = neighbors[2, 0] + neighbors[0, 2] + 1;
 
             if (v >= 4 || h >= 4 || d1 >= 4 || d2 >= 4)
             {
